@@ -44,5 +44,13 @@
 </main>
 
 <style>
-
+input {
+    margin-right: 10px;
+  }
+  li {
+    margin-top: 10px;
+  }
+  button {
+    margin-left: 10px;
+  }
 </style>
