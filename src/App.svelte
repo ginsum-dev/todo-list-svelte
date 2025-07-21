@@ -1,13 +1,9 @@
-<script>
-  // import svelteLogo from './assets/svelte.svg'
-  // import viteLogo from '/vite.svg'
-  // import Counter from './lib/Counter.svelte'
-  let newTodo = '';
-  let todos = [];
-  function addTodo() {
-    if (newTodo.trim() === '') return;
-    todos = [...todos, { text: newTodo, done: false }];
-    newTodo = '';
+<script lang="ts">
+  import TodoInput from './components/TodoInput.svelte';
+ 
+  let todos = $state([]); 
+  function addTodo(value: string) {
+    todos = [...todos, { text: value, done: false, createdAt: new Date().toISOString() }];
   }
 
   function toggleTodo(index) {
@@ -23,21 +19,16 @@
 
 <main>
   <h1>📝 Todo List</h1>
-  <input
-  placeholder="할 일을 입력하세요"
-  bind:value={newTodo}
-  on:keydown={(e) => e.key === 'Enter' && addTodo()}
-/>
-<button on:click={addTodo}>추가</button>
+  <TodoInput onAdd={addTodo} />
 
 <ul>
   {#each todos as todo, i}
     <li>
-      <input type="checkbox" bind:checked={todo.done} on:change={() => toggleTodo(i)} />
+      <input type="checkbox" bind:checked={todo.done} onchange={() => toggleTodo(i)} />
       <span style="text-decoration: {todo.done ? 'line-through' : 'none'}">
         {todo.text}
       </span>
-      <button on:click={() => deleteTodo(i)}>삭제</button>
+      <button onclick={() => deleteTodo(i)}>삭제</button>
     </li>
   {/each}
 </ul>
