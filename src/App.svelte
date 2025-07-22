@@ -1,7 +1,9 @@
 <script lang="ts">
   import TodoInput from './components/TodoInput.svelte';
- 
+  import TodoList from './components/TodoList.svelte';
+
   let todos = $state([]); 
+
   function addTodo(value: string) {
     todos = [...todos, { text: value, done: false, createdAt: new Date().toISOString() }];
   }
@@ -20,28 +22,5 @@
 <main>
   <h1>📝 Todo List</h1>
   <TodoInput onAdd={addTodo} />
-
-<ul>
-  {#each todos as todo, i}
-    <li>
-      <input type="checkbox" bind:checked={todo.done} onchange={() => toggleTodo(i)} />
-      <span style="text-decoration: {todo.done ? 'line-through' : 'none'}">
-        {todo.text}
-      </span>
-      <button onclick={() => deleteTodo(i)}>삭제</button>
-    </li>
-  {/each}
-</ul>
+  <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
 </main>
-
-<style>
-input {
-    margin-right: 10px;
-  }
-  li {
-    margin-top: 10px;
-  }
-  button {
-    margin-left: 10px;
-  }
-</style>
