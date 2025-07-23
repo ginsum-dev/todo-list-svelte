@@ -19,8 +19,8 @@
   }
 </script>
 
-<main>
-  <h1>📝 Todo List</h1>
+<main class="max-w-md mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">📝 Todo List</h1>
   <TodoInput onAdd={addTodo} />
   <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
 </main>

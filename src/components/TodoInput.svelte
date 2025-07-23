@@ -11,10 +11,10 @@ function handleAdd() {
 
 <div class="flex gap-2">
   <input
-    class="border px-2 py-1 rounded w-full"
+    class="border border-gray-300 px-2 py-1 rounded w-full"
     bind:value={input}
     onkeydown={(e) => e.key === 'Enter' && handleAdd()}
     placeholder="할 일을 입력하세요"
   />
-  <button class="bg-blue-500 text-white px-3 py-1 rounded" onclick={handleAdd}>추가</button>
+  <button class="w-[80px] bg-blue-600 text-white px-3 py-1 rounded" onclick={handleAdd}>추가</button>
 </div>
